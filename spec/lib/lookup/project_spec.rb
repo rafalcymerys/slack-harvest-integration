@@ -4,16 +4,14 @@ RSpec.describe Lookup::Project do
   let(:lookup) { described_class.new(harvest_service) }
   
   let(:harvest_service) { double }
-  let(:time_api) { double }
-  
+
   let(:project1) { Harvest::TrackableProject.new(name: 'Website', code: 'AWEB') }
   let(:project2) { Harvest::TrackableProject.new(name: 'Webinar', code: 'AWEBSTO') }
   let(:project3) { Harvest::TrackableProject.new(name: 'Internal', code: nil) }
   let(:project4) { Harvest::TrackableProject.new(name: 'Internal management', code: nil) }
 
   before do
-    allow(harvest_service).to receive(:time).and_return(time_api)
-    allow(time_api).to receive(:trackable_projects).and_return([project1, project2, project3, project4])
+    allow(harvest_service).to receive(:trackable_projects).and_return([project1, project2, project3, project4])
   end
 
   describe '#find' do

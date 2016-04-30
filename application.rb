@@ -15,3 +15,5 @@ require_relative 'lib/command/finish_current_entry'
 require_relative 'lib/command/switch_entry'
 
 require_relative 'lib/lookup/project'
+require_relative 'lib/lookup/task'
+require_relative 'lib/lookup/field_based_filter'
