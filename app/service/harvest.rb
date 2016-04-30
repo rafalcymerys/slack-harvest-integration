@@ -1,15 +1,15 @@
 module Service
   class Harvest
-    def projects
-      harvest_client.projects.all
-    end
-
     def active_entry
       harvest_client.time.all.select(&:timer_started_at).first
     end
 
     def toggle_entry(entry)
       harvest_client.time.toggle(entry.id)
+    end
+
+    def create_entry(entry)
+      harvest_client.time.create(entry)
     end
 
     def update_entry(entry)

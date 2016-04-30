@@ -10,4 +10,5 @@ require_relative 'app/security/errors'
 
 require_relative 'app/service/harvest'
 
+require_relative 'lib/command/start_new_entry'
 require_relative 'lib/command/finish_current_entry'
