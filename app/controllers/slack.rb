@@ -5,7 +5,7 @@ module Controllers
 
       Jobs::StartNewEntry.perform_async(params[:text], params[:response_url])
 
-      '{"response_type": "in_channel"}'
+      ''
     end
 
     private
