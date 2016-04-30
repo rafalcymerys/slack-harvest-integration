@@ -10,4 +10,4 @@ require_relative 'app/security/errors'
 
 require_relative 'app/service/harvest'
 
-require_relative 'lib/command/current_task_finished'
+require_relative 'lib/command/finish_current_entry'

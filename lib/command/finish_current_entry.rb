@@ -1,5 +1,5 @@
 module Command
-  class FinishCurrentTask
+  class FinishCurrentEntry
     def initialize(harvest_service, hours_ago: nil)
       @harvest_service = harvest_service
       @hours_ago = hours_ago

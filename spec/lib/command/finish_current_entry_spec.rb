@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe Command::FinishCurrentTask do
+RSpec.describe Command::FinishCurrentEntry do
   let(:command) { described_class.new(harvest_service, hours_ago: hours_ago) }
 
   let(:harvest_service) { double }
