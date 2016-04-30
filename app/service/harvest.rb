@@ -16,6 +16,10 @@ module Service
       harvest_client.time.update(entry)
     end
 
+    def trackable_projects
+      harvest_client.time.trackable_projects
+    end
+
     private
 
     def harvest_client

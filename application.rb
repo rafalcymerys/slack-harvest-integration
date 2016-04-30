@@ -13,3 +13,5 @@ require_relative 'app/service/harvest'
 require_relative 'lib/command/start_new_entry'
 require_relative 'lib/command/finish_current_entry'
 require_relative 'lib/command/switch_entry'
+
+require_relative 'lib/lookup/project'
