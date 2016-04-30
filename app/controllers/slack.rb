@@ -1,5 +1,5 @@
 module Controllers
-  class TimerController < Sinatra::Base
+  class Slack < Sinatra::Base
     post '/' do
       request_validator.validate_request(params)
 

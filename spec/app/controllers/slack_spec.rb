@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe Controllers::TimerController, type: :controller do
+RSpec.describe Controllers::Slack, type: :controller do
   describe 'POST /' do
     subject { post '/', params }
 

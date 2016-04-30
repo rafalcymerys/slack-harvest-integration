@@ -1,3 +1,3 @@
 require_relative 'application'
 
-map('/time') { run Controllers::TimeController }
+map('/slack') { run Controllers::Slack }
