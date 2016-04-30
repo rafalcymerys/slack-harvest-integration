@@ -1,6 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    concurrent-ruby (1.0.1)
+    connection_pool (2.2.0)
     diff-lcs (1.2.5)
     harvested (3.1.1)
       hashie
@@ -17,6 +19,7 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
+    redis (3.3.0)
     rspec (3.4.0)
       rspec-core (~> 3.4.0)
       rspec-expectations (~> 3.4.0)
@@ -30,6 +33,10 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.4.0)
     rspec-support (3.4.1)
+    sidekiq (4.1.1)
+      concurrent-ruby (~> 1.0)
+      connection_pool (~> 2.2, >= 2.2.0)
+      redis (~> 3.2, >= 3.2.1)
     sinatra (1.4.7)
       rack (~> 1.5)
       rack-protection (~> 1.4)
@@ -43,6 +50,7 @@ DEPENDENCIES
   harvested (~> 3.1)
   rack-test (~> 0.6)
   rspec (~> 3.4)
+  sidekiq (~> 4.1)
   sinatra (~> 1.4)
 
 BUNDLED WITH
