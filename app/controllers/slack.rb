@@ -4,6 +4,8 @@ module Controllers
       request_validator.validate_request(params)
 
       Jobs::StartNewEntry.perform_async(params[:text], params[:response_url])
+
+      '{"response_type": "in_channel"}'
     end
 
     private
