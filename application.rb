@@ -17,3 +17,8 @@ require_relative 'lib/command/switch_entry'
 require_relative 'lib/lookup/project'
 require_relative 'lib/lookup/task'
 require_relative 'lib/lookup/field_based_filter'
+
+require_relative 'lib/parser/errors'
+require_relative 'lib/parser/hours'
+require_relative 'lib/parser/entry_command'
+require_relative 'lib/parser/entry_command_result'
