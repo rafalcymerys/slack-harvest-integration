@@ -8,3 +8,4 @@ gem 'rspec', '~> 3.4'
 gem 'rack-test', '~> 0.6'
 
 gem 'harvested', '~> 3.1'
+gem 'slack-api', '~> 1.2'

@@ -1,5 +1,6 @@
 require 'rspec'
 require 'rack/test'
+require 'sidekiq/testing'
 
 require_relative '../application'
 
@@ -10,5 +11,7 @@ RSpec.configure do |config|
     def app
       described_class
     end
+
+    Sidekiq::Testing.fake!
   end
 end

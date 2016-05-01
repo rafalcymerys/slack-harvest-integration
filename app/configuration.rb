@@ -8,6 +8,10 @@ class Configuration
       ENV['SLACK_DOMAIN']
     end
 
+    def slack_api_token
+      ENV['SLACK_API_TOKEN']
+    end
+
     def harvest_subdomain
       ENV['HARVEST_SUBDOMAIN']
     end

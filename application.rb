@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'harvested'
+require 'slack'
 require 'sidekiq'
 require 'rest-client'
 
