@@ -1,7 +1,7 @@
 module Service
   class Harvest
-    def user_by_email(email)
-      harvest_client.users.all.select { |user| user.email == email }.first
+    def user_id_for_email(email)
+      harvest_client.users.all.select { |user| user.email == email }.map(&:id).first
     end
 
     def active_entry

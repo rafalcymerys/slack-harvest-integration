@@ -24,6 +24,9 @@ require_relative 'lib/lookup/project'
 require_relative 'lib/lookup/task'
 require_relative 'lib/lookup/field_based_filter'
 
+require_relative 'lib/matcher/errors'
+require_relative 'lib/matcher/slack_havest_user'
+
 require_relative 'lib/parser/errors'
 require_relative 'lib/parser/hours'
 require_relative 'lib/parser/entry_command'
