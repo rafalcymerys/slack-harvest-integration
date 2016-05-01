@@ -1,5 +1,9 @@
 module Service
   class Harvest
+    def user_by_email(email)
+      harvest_client.users.all.select { |user| user.email == email }.first
+    end
+
     def active_entry
       harvest_client.time.all.select(&:timer_started_at).first
     end
