@@ -14,6 +14,7 @@ require_relative 'app/security/slack_request_validator'
 require_relative 'app/security/errors'
 
 require_relative 'app/service/harvest'
+require_relative 'app/service/harvest_user'
 require_relative 'app/service/slack'
 
 require_relative 'lib/command/start_new_entry'

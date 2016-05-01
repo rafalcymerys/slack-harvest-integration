@@ -4,11 +4,12 @@ module Jobs
 
     def initialize
       @slack_service = Service::Slack.new
+      @harvest_user_service = Service::HarvestUser.new
     end
 
-    def perform(command, response_url)
+    def perform(command, slack_user_id, response_url)
       parser = Parser::EntryCommand.new
-      harvest = Service::Harvest.new
+      harvest = Service::Harvest.new(harvest_user_id(slack_user_id))
 
       parsed_command = parser.parse(command)
 
@@ -28,6 +29,11 @@ module Jobs
 
     private
 
-    attr_reader :slack_service
+    attr_reader :slack_service, :harvest_user_service
+
+    def harvest_user_id(slack_user_id)
+      matcher = Matcher::SlackHarvestUser.new(slack_service, harvest_user_service)
+      matcher.harvest_user_id(slack_user_id)
+    end
   end
 end

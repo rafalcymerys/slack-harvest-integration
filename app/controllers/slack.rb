@@ -3,7 +3,7 @@ module Controllers
     post '/' do
       request_validator.validate_request(params)
 
-      Jobs::StartNewEntry.perform_async(params[:text], params[:response_url])
+      Jobs::StartNewEntry.perform_async(params[:text], params[:user_id], params[:response_url])
 
       ''
     end

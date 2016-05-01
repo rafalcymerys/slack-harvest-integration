@@ -14,7 +14,6 @@ module Lookup
       return partial_matches.first if partial_matches.count == 1
 
       partial_matches
-
     end
 
     private

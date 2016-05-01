@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 RSpec.describe Matcher::SlackHarvestUser do
-  let(:matcher) { described_class.new(slack_service, harvest_service) }
+  let(:matcher) { described_class.new(slack_service, harvest_user_service) }
 
   let(:slack_service) { double }
-  let(:harvest_service) { double }
+  let(:harvest_user_service) { double }
 
   describe '#harvest_user_id' do
     subject { matcher.harvest_user_id(input_slack_user_id) }
@@ -15,10 +15,10 @@ RSpec.describe Matcher::SlackHarvestUser do
 
     before do
       allow(slack_service).to receive(:email_for_user)
-      allow(harvest_service).to receive(:user_id_for_email)
+      allow(harvest_user_service).to receive(:user_id_for_email)
 
       allow(slack_service).to receive(:email_for_user).with(slack_user_id).and_return(email)
-      allow(harvest_service).to receive(:user_id_for_email).with(email).and_return(harvest_user_id)
+      allow(harvest_user_service).to receive(:user_id_for_email).with(email).and_return(harvest_user_id)
     end
 
     context 'when user exists' do
