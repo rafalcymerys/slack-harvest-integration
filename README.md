@@ -31,7 +31,7 @@ The simplest way to run it is to use `bundle exec rackup`
 Also, you'll need to launch sidekiq workers.
 `bundle exec sidekiq -r ./worker.rb`
 
-## Deploying to heroku
+### Deploying to heroku
 
 Provided Procfile should be fine.
 
@@ -70,3 +70,6 @@ If you started working on a task a while ago, but forgot to switch your timer, y
 
 This will subtract 1:30 from your current entry and start a new one (Website -> Management) with 1:30 already on timer.
 
+## Contributing
+
+Pull requests are welcome. :)
