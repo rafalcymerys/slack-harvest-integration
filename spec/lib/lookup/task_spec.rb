@@ -16,7 +16,7 @@ RSpec.describe Lookup::Task do
       let(:phrase) { 'Ma' }
 
       it 'returns tasks with matching names' do
-        expect(subject).to match_array([task1, task2])
+        expect(subject.to_a).to match_array([task1, task2])
       end
     end
 
@@ -24,7 +24,7 @@ RSpec.describe Lookup::Task do
       let(:phrase) { 'mA' }
 
       it 'returns tasks with matching names' do
-        expect(subject).to match_array([task1, task2])
+        expect(subject.to_a).to match_array([task1, task2])
       end
     end
 
@@ -32,7 +32,7 @@ RSpec.describe Lookup::Task do
       let(:phrase) { 'dev' }
 
       it 'returns the matching task' do
-        expect(subject).to eq([task3])
+        expect(subject.get).to eq(task3)
       end
     end
 
@@ -40,7 +40,7 @@ RSpec.describe Lookup::Task do
       let(:phrase) { 'Test' }
 
       it 'returns an empty array' do
-        expect(subject).to eq([])
+        expect(subject.empty?).to eq(true)
       end
     end
   end

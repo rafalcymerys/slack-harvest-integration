@@ -9,26 +9,26 @@ module Command
 
     def execute
       project_lookup = Lookup::Project.new(harvest_time_service)
-      projects = project_lookup.find(parsed_command.project)
+      project_match = project_lookup.find(parsed_command.project)
 
-      if projects.empty?
+      if project_match.empty?
         return Response::Message.new(text: Response::Text::PROJECT_NOT_FOUND)
-      elsif projects.size > 1
+      elsif project_match.multiple?
         return Response::Message.new(text: Response::Text::MULTIPLE_PROJECTS_FOUND)
       end
 
-      project = projects.first
+      project = project_match.get
 
       task_lookup = Lookup::Task.new(project)
-      tasks = task_lookup.find(parsed_command.task)
+      task_match = task_lookup.find(parsed_command.task)
 
-      if tasks.empty?
+      if task_match.empty?
         return Response::Message.new(text: Response::Text::TASK_NOT_FOUND)
-      elsif tasks.size > 1
+      elsif task_match.multiple?
         return Response::Message.new(text: Response::Text::MULTIPLE_TASKS_FOUND)
       end
 
-      task = tasks.first
+      task = task_match.get
 
       switch_entry_task = Task::SwitchEntry.new(harvest_time_service, project_id: project.id, task_id: task.id,
                                    notes: parsed_command.notes, hours_ago: parsed_command.hours)

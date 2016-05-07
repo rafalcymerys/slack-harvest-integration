@@ -21,7 +21,7 @@ RSpec.describe Lookup::Project do
       let(:phrase) { 'Web' }
 
       it 'returns projects with these names' do
-        expect(subject).to match_array([project1, project2])
+        expect(subject.to_a).to match_array([project1, project2])
       end
     end
 
@@ -29,7 +29,7 @@ RSpec.describe Lookup::Project do
       let(:phrase) { 'weB' }
 
       it 'returns projects with these names' do
-        expect(subject).to match_array([project1, project2])
+        expect(subject.to_a).to match_array([project1, project2])
       end
     end
 
@@ -37,7 +37,7 @@ RSpec.describe Lookup::Project do
       let(:phrase) { 'Websi' }
 
       it 'returns the project with that name' do
-        expect(subject).to eq([project1])
+        expect(subject.get).to eq(project1)
       end
     end
 
@@ -45,7 +45,7 @@ RSpec.describe Lookup::Project do
       let(:phrase) { 'Website' }
 
       it 'returns the project with that name' do
-        expect(subject).to eq([project1])
+        expect(subject.get).to eq(project1)
       end
     end
 
@@ -53,7 +53,7 @@ RSpec.describe Lookup::Project do
       let(:phrase) { 'Internal' }
 
       it 'returns the project with exact match' do
-        expect(subject).to eq([project3])
+        expect(subject.get).to eq(project3)
       end
     end
 
@@ -61,7 +61,7 @@ RSpec.describe Lookup::Project do
       let(:phrase) { 'AWE' }
 
       it 'returns projects with matching codes' do
-        expect(subject).to match_array([project1, project2])
+        expect(subject.to_a).to match_array([project1, project2])
       end
     end
 
@@ -69,7 +69,7 @@ RSpec.describe Lookup::Project do
       let(:phrase) { 'AWEBSTO' }
 
       it 'returns the project with that code' do
-        expect(subject).to match_array([project2])
+        expect(subject.get).to match_array(project2)
       end
     end
 
@@ -77,7 +77,7 @@ RSpec.describe Lookup::Project do
       let(:phrase) { 'Test' }
 
       it 'returns an empty array' do
-        expect(subject).to eq([])
+        expect(subject.empty?).to eq(true)
       end
     end
   end
