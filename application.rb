@@ -13,6 +13,8 @@ require_relative 'app/jobs/start_new_entry'
 require_relative 'app/security/slack_request_validator'
 require_relative 'app/security/errors'
 
+require_relative 'app/serializer/message'
+
 require_relative 'app/service/harvest_time'
 require_relative 'app/service/harvest_user'
 require_relative 'app/service/slack'
@@ -32,3 +34,6 @@ require_relative 'lib/parser/errors'
 require_relative 'lib/parser/hours'
 require_relative 'lib/parser/entry_command'
 require_relative 'lib/parser/entry_command_result'
+
+require_relative 'lib/response/attachment'
+require_relative 'lib/response/message'
