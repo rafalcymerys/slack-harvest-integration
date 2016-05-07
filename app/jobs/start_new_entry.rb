@@ -9,7 +9,7 @@ module Jobs
 
     def perform(command, slack_user_id, response_url)
       parser = Parser::EntryCommand.new
-      harvest = Service::Harvest.new(harvest_user_id(slack_user_id))
+      harvest = Service::HarvestTime.new(harvest_user_id(slack_user_id))
 
       parsed_command = parser.parse(command)
 

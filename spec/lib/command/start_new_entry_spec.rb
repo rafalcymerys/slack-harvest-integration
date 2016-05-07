@@ -2,11 +2,11 @@ require 'spec_helper'
 
 RSpec.describe Command::StartNewEntry do
   let(:command) do
-    described_class.new(harvest_service, project_id: project_id, task_id: task_id, notes: notes,
+    described_class.new(harvest_time_service, project_id: project_id, task_id: task_id, notes: notes,
                         hours_ago: hours_ago)
   end
   
-  let(:harvest_service) { double.as_null_object }
+  let(:harvest_time_service) { double.as_null_object }
   let(:project_id) { 15 }
   let(:task_id) { 10 }
   let(:notes) { 'Doing my thing' }
@@ -21,8 +21,8 @@ RSpec.describe Command::StartNewEntry do
 
       it 'calls harvest api to create a new entry' do
         entry = nil
-        expect(harvest_service).to receive(:create_entry) { |e| entry = e }.and_return(created_entry)
-        expect(harvest_service).not_to receive(:toggle_entry)
+        expect(harvest_time_service).to receive(:create_entry) { |e| entry = e }.and_return(created_entry)
+        expect(harvest_time_service).not_to receive(:toggle_entry)
 
         expect(subject).to eq(true)
 
@@ -38,8 +38,8 @@ RSpec.describe Command::StartNewEntry do
 
       it 'calls harvest api to create a new entry and toggles it' do
         entry = nil
-        expect(harvest_service).to receive(:create_entry) { |e| entry = e }.and_return(created_entry)
-        expect(harvest_service).to receive(:toggle_entry).with(created_entry)
+        expect(harvest_time_service).to receive(:create_entry) { |e| entry = e }.and_return(created_entry)
+        expect(harvest_time_service).to receive(:toggle_entry).with(created_entry)
 
         expect(subject).to eq(true)
 

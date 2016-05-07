@@ -1,5 +1,5 @@
 module Service
-  class Harvest
+  class HarvestTime
     def initialize(user_id)
       @user_id = user_id
     end

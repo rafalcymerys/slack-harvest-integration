@@ -13,7 +13,7 @@ require_relative 'app/jobs/start_new_entry'
 require_relative 'app/security/slack_request_validator'
 require_relative 'app/security/errors'
 
-require_relative 'app/service/harvest'
+require_relative 'app/service/harvest_time'
 require_relative 'app/service/harvest_user'
 require_relative 'app/service/slack'
 

@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 RSpec.describe Command::FinishCurrentEntry do
-  let(:command) { described_class.new(harvest_service, hours_ago: hours_ago) }
+  let(:command) { described_class.new(harvest_time_service, hours_ago: hours_ago) }
 
-  let(:harvest_service) { double }
+  let(:harvest_time_service) { double }
 
   describe '#execute' do
     subject { command.execute }
@@ -12,7 +12,7 @@ RSpec.describe Command::FinishCurrentEntry do
       let(:hours_ago) { nil }
 
       before do
-        allow(harvest_service).to receive(:active_entry).and_return(nil)
+        allow(harvest_time_service).to receive(:active_entry).and_return(nil)
       end
 
       it 'returns false' do
@@ -24,14 +24,14 @@ RSpec.describe Command::FinishCurrentEntry do
       let(:active_entry) { double }
 
       before do
-        allow(harvest_service).to receive(:active_entry).and_return(active_entry)
+        allow(harvest_time_service).to receive(:active_entry).and_return(active_entry)
       end
 
       context 'when user wants to finish entry now' do
         let(:hours_ago) { nil }
 
         it 'calls harvest api to toggle active task' do
-          expect(harvest_service).to receive(:toggle_entry).with(active_entry)
+          expect(harvest_time_service).to receive(:toggle_entry).with(active_entry)
 
           expect(subject).to eq(true)
         end
@@ -48,9 +48,9 @@ RSpec.describe Command::FinishCurrentEntry do
         end
 
         it 'calls harvest api to toggle active task and subtracts time' do
-          expect(harvest_service).to receive(:toggle_entry).with(active_entry)
+          expect(harvest_time_service).to receive(:toggle_entry).with(active_entry)
           expect(active_entry).to receive(:hours=).with(new_hours_tracked)
-          expect(harvest_service).to receive(:update_entry).with(active_entry)
+          expect(harvest_time_service).to receive(:update_entry).with(active_entry)
 
           expect(subject).to eq(true)
         end
