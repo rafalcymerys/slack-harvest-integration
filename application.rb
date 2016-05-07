@@ -25,9 +25,11 @@ require_relative 'lib/task/start_new_entry'
 require_relative 'lib/task/finish_current_entry'
 require_relative 'lib/task/switch_entry'
 
+require_relative 'lib/lookup/errors'
 require_relative 'lib/lookup/project'
 require_relative 'lib/lookup/task'
 require_relative 'lib/lookup/field_based_filter'
+require_relative 'lib/lookup/match'
 
 require_relative 'lib/matcher/slack_harvest_user'
 
