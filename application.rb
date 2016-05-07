@@ -19,6 +19,8 @@ require_relative 'app/service/harvest_time'
 require_relative 'app/service/harvest_user'
 require_relative 'app/service/slack'
 
+require_relative 'lib/command/start_new_entry'
+
 require_relative 'lib/task/start_new_entry'
 require_relative 'lib/task/finish_current_entry'
 require_relative 'lib/task/switch_entry'
@@ -36,3 +38,4 @@ require_relative 'lib/parser/entry_command_result'
 
 require_relative 'lib/response/attachment'
 require_relative 'lib/response/message'
+require_relative 'lib/response/text'

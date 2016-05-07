@@ -5,8 +5,7 @@ module Service
     end
 
     def respond(url, message)
-      params = {text: message}
-      RestClient.post(url, params.to_json, :content_type => :json, :accept => :json)
+      RestClient.post(url, message, :content_type => :json, :accept => :json)
     end
 
     def email_for_user(user_id)
