@@ -7,9 +7,9 @@ module Matcher
 
     def harvest_user_id(slack_user_id)
       email = slack_service.email_for_user(slack_user_id)
-      raise UserNotFoundError unless email
+      return nil unless email
       harvest_user_id = harvest_user_service.user_id_for_email(email)
-      raise UserNotFoundError unless harvest_user_id
+      return nil unless harvest_user_id
 
       harvest_user_id
     end

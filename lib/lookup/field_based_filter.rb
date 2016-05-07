@@ -8,12 +8,9 @@ module Lookup
       downcase_phrase = phrase.downcase
 
       exact_matches = exact_matches(downcase_phrase, objects)
-      return exact_matches.first if exact_matches.count == 1
+      return exact_matches if exact_matches.count == 1
 
-      partial_matches = partial_matches(downcase_phrase, objects)
-      return partial_matches.first if partial_matches.count == 1
-
-      partial_matches
+      partial_matches(downcase_phrase, objects)
     end
 
     private

@@ -32,8 +32,8 @@ RSpec.describe Matcher::SlackHarvestUser do
     context 'when user is missing' do
       let(:input_slack_user_id) { 'U1234' }
 
-      it 'raises an error' do
-        expect { subject }.to raise_error(Matcher::UserNotFoundError)
+      it 'returns nil' do
+        expect(subject).to eq(nil)
       end
     end
   end

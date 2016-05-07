@@ -32,7 +32,7 @@ RSpec.describe Lookup::Task do
       let(:phrase) { 'dev' }
 
       it 'returns the matching task' do
-        expect(subject).to eq(task3)
+        expect(subject).to eq([task3])
       end
     end
 
