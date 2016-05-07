@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-RSpec.describe Command::SwitchEntry do
-  let(:command) do
+RSpec.describe Task::SwitchEntry do
+  let(:task) do
     described_class.new(harvest_time_service, project_id: project_id, task_id: task_id, notes: notes, hours_ago: hours_ago)
   end
 
@@ -12,7 +12,7 @@ RSpec.describe Command::SwitchEntry do
   let(:notes) { 'Doing my thing' }
 
   describe '#execute' do
-    subject { command.execute }
+    subject { task.execute }
 
     context 'when there is an active entry' do
       let(:active_entry) { double.as_null_object }

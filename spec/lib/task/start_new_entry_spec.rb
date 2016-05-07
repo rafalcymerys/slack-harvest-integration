@@ -1,18 +1,18 @@
 require 'spec_helper'
 
-RSpec.describe Command::StartNewEntry do
-  let(:command) do
+RSpec.describe Task::StartNewEntry do
+  let(:task) do
     described_class.new(harvest_time_service, project_id: project_id, task_id: task_id, notes: notes,
                         hours_ago: hours_ago)
   end
-  
+
   let(:harvest_time_service) { double.as_null_object }
   let(:project_id) { 15 }
   let(:task_id) { 10 }
   let(:notes) { 'Doing my thing' }
 
   describe '#execute' do
-    subject { command.execute }
+    subject { task.execute }
 
     let(:created_entry) { double }
 

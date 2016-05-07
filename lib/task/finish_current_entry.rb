@@ -1,4 +1,4 @@
-module Command
+module Task
   class FinishCurrentEntry
     def initialize(harvest_time_service, hours_ago: nil)
       @harvest_time_service = harvest_time_service

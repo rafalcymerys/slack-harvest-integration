@@ -41,10 +41,10 @@ module Jobs
       tasks = task_lookup.find(parsed_command.task)
       task = tasks.first
 
-      command = Command::SwitchEntry.new(harvest_time_service, project_id: project.id, task_id: task.id,
+      task = Task::SwitchEntry.new(harvest_time_service, project_id: project.id, task_id: task.id,
                                          notes: parsed_command.notes, hours_ago: parsed_command.hours)
 
-      command.execute
+      task.execute
 
       Response::Message.new(text: "Now billing #{project.name} -> #{task.first.name}")
     end

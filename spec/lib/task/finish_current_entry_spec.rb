@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-RSpec.describe Command::FinishCurrentEntry do
-  let(:command) { described_class.new(harvest_time_service, hours_ago: hours_ago) }
+RSpec.describe Task::FinishCurrentEntry do
+  let(:task) { described_class.new(harvest_time_service, hours_ago: hours_ago) }
 
   let(:harvest_time_service) { double }
 
   describe '#execute' do
-    subject { command.execute }
+    subject { task.execute }
 
     context 'when there is no active entry' do
       let(:hours_ago) { nil }
