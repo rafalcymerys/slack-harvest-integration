@@ -13,7 +13,7 @@ module Command
       project_lookup = Lookup::Project.new(projects)
       project_match = project_lookup.find(parsed_command.project)
 
-      return error_message_factory.message_for_incorrect_project(project_match) unless project_match.single?
+      return error_message_factory.message_for_incorrect_project(project_match, projects) unless project_match.single?
 
       project = project_match.get
 
