@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 RSpec.describe Lookup::Task do
-  let(:lookup) { described_class.new(project) }
+  let(:lookup) { described_class.new(tasks) }
 
-  let(:project) { Harvest::TrackableProject.new(name: 'Internal', tasks: [task1, task2, task3]) }
+  let(:tasks) { [task1, task2, task3] }
 
   let(:task1) { Harvest::TrackableProject::Task.new(name: 'Management') }
   let(:task2) { Harvest::TrackableProject::Task.new(name: 'Maintenance') }

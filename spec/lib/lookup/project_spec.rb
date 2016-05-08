@@ -1,18 +1,14 @@
 require 'spec_helper'
 
 RSpec.describe Lookup::Project do
-  let(:lookup) { described_class.new(harvest_time_service) }
+  let(:lookup) { described_class.new(projects) }
   
-  let(:harvest_time_service) { double }
+  let(:projects) { [project1, project2, project3, project4] }
 
   let(:project1) { Harvest::TrackableProject.new(name: 'Website', code: 'AWEB') }
   let(:project2) { Harvest::TrackableProject.new(name: 'Webinar', code: 'AWEBSTO') }
   let(:project3) { Harvest::TrackableProject.new(name: 'Internal', code: nil) }
   let(:project4) { Harvest::TrackableProject.new(name: 'Internal management', code: nil) }
-
-  before do
-    allow(harvest_time_service).to receive(:trackable_projects).and_return([project1, project2, project3, project4])
-  end
 
   describe '#find' do
     subject { lookup.find(phrase) }

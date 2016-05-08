@@ -9,14 +9,16 @@ module Command
     end
 
     def execute
-      project_lookup = Lookup::Project.new(harvest_time_service)
+      projects = harvest_time_service.trackable_projects
+      project_lookup = Lookup::Project.new(projects)
       project_match = project_lookup.find(parsed_command.project)
 
       return error_message_factory.message_for_incorrect_project(project_match) unless project_match.single?
 
       project = project_match.get
 
-      task_lookup = Lookup::Task.new(project)
+      tasks = project.tasks
+      task_lookup = Lookup::Task.new(tasks)
       task_match = task_lookup.find(parsed_command.task)
 
       return error_message_factory.message_for_incorrect_task(task_match) unless task_match.single?

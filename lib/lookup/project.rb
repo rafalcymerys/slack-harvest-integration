@@ -1,17 +1,16 @@
 module Lookup
   class Project
-    def initialize(harvest_time_service)
-      @harvest_time_service = harvest_time_service
+    def initialize(projects)
+      @projects = projects
       @filter = FieldBasedFilter.new(:name, :code)
     end
 
     def find(phrase)
-      projects = harvest_time_service.trackable_projects
       filter.filter(projects, phrase)
     end
 
     private
 
-    attr_reader :harvest_time_service, :filter
+    attr_reader :projects, :filter
   end
 end
