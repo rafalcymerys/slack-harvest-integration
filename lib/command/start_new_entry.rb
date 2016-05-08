@@ -3,6 +3,7 @@ module Command
     def initialize(parsed_command, harvest_time_service:)
       @slack_service = Service::Slack.new
       @harvest_time_service = harvest_time_service
+      @error_message_factory = Response::ErrorMessageFactory.new
 
       @parsed_command = parsed_command
     end
@@ -11,27 +12,19 @@ module Command
       project_lookup = Lookup::Project.new(harvest_time_service)
       project_match = project_lookup.find(parsed_command.project)
 
-      if project_match.empty?
-        return Response::Message.new(text: Response::Text::PROJECT_NOT_FOUND)
-      elsif project_match.multiple?
-        return Response::Message.new(text: Response::Text::MULTIPLE_PROJECTS_FOUND)
-      end
+      return error_message_factory.message_for_incorrect_project(project_match) unless project_match.single?
 
       project = project_match.get
 
       task_lookup = Lookup::Task.new(project)
       task_match = task_lookup.find(parsed_command.task)
 
-      if task_match.empty?
-        return Response::Message.new(text: Response::Text::TASK_NOT_FOUND)
-      elsif task_match.multiple?
-        return Response::Message.new(text: Response::Text::MULTIPLE_TASKS_FOUND)
-      end
+      return error_message_factory.message_for_incorrect_task(task_match) unless task_match.single?
 
       task = task_match.get
 
       switch_entry_task = Task::SwitchEntry.new(harvest_time_service, project_id: project.id, task_id: task.id,
-                                   notes: parsed_command.notes, hours_ago: parsed_command.hours)
+                                                notes: parsed_command.notes, hours_ago: parsed_command.hours)
 
       switch_entry_task.execute
 
@@ -40,7 +33,7 @@ module Command
 
     private
 
-    attr_reader :slack_service, :harvest_time_service
+    attr_reader :slack_service, :harvest_time_service, :error_message_factory
     attr_reader :parsed_command
   end
 end

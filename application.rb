@@ -40,4 +40,5 @@ require_relative 'lib/parser/entry_command_result'
 
 require_relative 'lib/response/attachment'
 require_relative 'lib/response/message'
+require_relative 'lib/response/error_message_factory'
 require_relative 'lib/response/text'
