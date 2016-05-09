@@ -24,7 +24,7 @@ module Response
     end
 
     def project_name(project)
-      if project.code
+      if project.code && !project.code.empty?
         "(#{project.code}) #{project.name}"
       else
         project.name
