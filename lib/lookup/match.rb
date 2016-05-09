@@ -27,8 +27,6 @@ module Lookup
       elements.each(&block)
     end
 
-    private
-
     attr_reader :elements
   end
 end

@@ -20,7 +20,7 @@ RSpec.describe Response::ErrorMessageFactory do
 
     context 'when no projects were found' do
       let(:lookup_match) { Lookup::Match.new([]) }
-      let(:expected_project_list_text) { '(INT) Internal\nWebsite\n(STO) Store' }
+      let(:expected_project_list_text) { "(INT) Internal\nWebsite\n(STO) Store" }
 
       it 'creates a message with not found text' do
         expect(subject.text).to eq(Response::Text::PROJECT_NOT_FOUND)
@@ -41,9 +41,22 @@ RSpec.describe Response::ErrorMessageFactory do
 
     context 'when multiple project were found' do
       let(:lookup_match) { Lookup::Match.new([project1, project2]) }
+      let(:expected_project_list_text) { "(INT) Internal\nWebsite" }
 
       it 'creates a message with multiple projects found text' do
         expect(subject.text).to eq(Response::Text::MULTIPLE_PROJECTS_FOUND)
+      end
+
+      it 'creates a message with a single attachment' do
+        expect(subject.attachments.count).to eq(1)
+      end
+
+      it 'creates a message with matching projects attachment' do
+        expect(subject.attachments.first.title).to eq(Response::Text::MATCHING_PROJECTS)
+      end
+
+      it 'creates a message with list of matching project names' do
+        expect(subject.attachments.first.text).to eq(expected_project_list_text)
       end
     end
   end
