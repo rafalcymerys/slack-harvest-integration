@@ -9,5 +9,7 @@ module Response
 
     TASK_NOT_FOUND = 'Could not find a matching task.'
     MULTIPLE_TASKS_FOUND = 'Multiple matching tasks found. Use a more precise name to start a timer.'
+    AVAILABLE_TASKS = 'Available tasks'
+    MATCHING_TASKS = 'Matching tasks'
   end
 end

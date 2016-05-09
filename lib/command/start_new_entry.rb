@@ -21,7 +21,7 @@ module Command
       task_lookup = Lookup::Task.new(tasks)
       task_match = task_lookup.find(parsed_command.task)
 
-      return error_message_factory.message_for_incorrect_task(task_match) unless task_match.single?
+      return error_message_factory.message_for_incorrect_task(task_match, tasks) unless task_match.single?
 
       task = task_match.get
 

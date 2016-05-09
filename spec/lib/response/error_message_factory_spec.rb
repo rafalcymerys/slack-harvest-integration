@@ -62,27 +62,57 @@ RSpec.describe Response::ErrorMessageFactory do
   end
 
   describe '#message_for_incorrect_task' do
-    subject { factory.message_for_incorrect_task(lookup_match) }
+    subject { factory.message_for_incorrect_task(lookup_match, available_tasks) }
+
+    let(:task1) { Harvest::TrackableProject::Task.new(name: task1_name) }
+    let(:task2) { Harvest::TrackableProject::Task.new(name: task2_name) }
+    let(:task3) { Harvest::TrackableProject::Task.new(name: task3_name) }
+
+    let(:task1_name) { 'Development' }
+    let(:task2_name) { 'Meetings' }
+    let(:task3_name) { 'Maintenance' }
+
+    let(:available_tasks) { [task1, task2, task3] }
 
     context 'when no tasks were found' do
       let(:lookup_match) { Lookup::Match.new([]) }
+      let(:expected_task_list_text) { "Development\nMeetings\nMaintenance" }
 
       it 'creates a message with not found text' do
         expect(subject.text).to eq(Response::Text::TASK_NOT_FOUND)
+      end
+
+      it 'creates a message with a single attachment' do
+        expect(subject.attachments.count).to eq(1)
+      end
+
+      it 'creates a message with matching tasks attachment' do
+        expect(subject.attachments.first.title).to eq(Response::Text::AVAILABLE_TASKS)
+      end
+
+      it 'creates a message with list of task names' do
+        expect(subject.attachments.first.text).to eq(expected_task_list_text)
       end
     end
 
     context 'when multiple tasks were found' do
       let(:lookup_match) { Lookup::Match.new([task1, task2]) }
-
-      let(:task1) { Harvest::TrackableProject::Task.new(name: task1_name) }
-      let(:task2) { Harvest::TrackableProject::Task.new(name: task2_name) }
-
-      let(:task1_name) { 'Development' }
-      let(:task2_name) { 'Meetings' }
+      let(:expected_task_list_text) { "Development\nMeetings" }
 
       it 'creates a message with multiple projects found text' do
         expect(subject.text).to eq(Response::Text::MULTIPLE_TASKS_FOUND)
+      end
+
+      it 'creates a message with a single attachment' do
+        expect(subject.attachments.count).to eq(1)
+      end
+
+      it 'creates a message with matching tasks attachment' do
+        expect(subject.attachments.first.title).to eq(Response::Text::MATCHING_TASKS)
+      end
+
+      it 'creates a message with list of matching task names' do
+        expect(subject.attachments.first.text).to eq(expected_task_list_text)
       end
     end
   end
