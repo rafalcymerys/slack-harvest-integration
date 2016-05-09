@@ -19,7 +19,7 @@ module Response
     private
 
     def available_projects_attachment(available_projects)
-      available_projects_text = available_projects.map { |project| project_name(project) }.join('\n')
+      available_projects_text = available_projects.map { |project| project_name(project) }.join("\n")
       Attachment.new(title: Text::AVAILABLE_PROJECTS, text: available_projects_text)
     end
 
